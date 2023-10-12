@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch me if you can</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #viewport{
+            width: 100vw;
+            height: 100vh;
+            background-color: #8e1c1c;
+            position: relative;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="viewport">
+        <div id="box"></div>
+    </div>
+
+    <script>
+        const box=document.getElementById('box');
+        const viewport=document.getElementById('viewport');
+
+        function moveBox(e){
+            const boxWidth=box.clientWidth;
+            const boxHeight=box.clientHeight;
+            const maxX=viewport.clientWidth-boxWidth;
+            const maxY=viewport.clientHeight-boxHeight;
+
+            //calculating random posistion for x and Y
+            const x=Math.random()*maxX;
+            const y=Math.random()*maxY;
+
+            box.style.left=x+'px';
+            box.style.top=y+'px';
+
+
+
+        }
+        box.addEventListener('mouseover',moveBox);
+    </script>
+
+    
+</body>
+</html>

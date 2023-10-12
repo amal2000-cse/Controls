@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVE THE BALL</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #viewport{
+            width: 100vw;
+            height: 100vh;
+            background-color: #8e1c1c;
+            position: relative;
+        }
+
+        #ball{
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="viewport">
+        <div id="ball"></div>
+    </div>
+
+
+    <script>
+        const ball=document.getElementById('ball');
+        const viewport=document.getElementById('viewport');
+        const ballSize=50;//diameter of the ball
+
+        let ballX=Math.random()*viewport.clientWidth-ballSize;
+        let ballY=Math.random()*viewport.clientHeight-ballSize;
+
+        ball.style.left=ballX+'px';
+        ball.style.top=ballY+'px';
+
+        document.addEventListener('keydown',moveBall);
+
+        function moveBall(e){
+            const step=10;
+            switch(e.key){
+                case 'w':
+                ballY = Math.max(ballY - step, 0);
+                break;
+                case 'a':
+                ballX = Math.max(ballX - step, 0);
+                break;
+                case 's':
+                ballY = Math.min(ballY + step, viewport.clientHeight - ballSize);
+                break;
+                case 'd':
+                ballX = Math.min(ballX + step, viewport.clientWidth - ballSize);
+                break;
+            }
+            ball.style.top=ballY+'px';
+            ball.style.left=ballX+'px'; 
+        }
+      
+
+    </script>
+    
+</body>
+</html>
